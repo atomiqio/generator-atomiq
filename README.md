@@ -1,6 +1,6 @@
 # generator-api [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
-> Generate an Express-based Node API to run under Docker
+> Generate a Node microservice with Docker, Express, Babel, and Node Inspector support
 
 ** NOTE: This is currently only proof of concept code under early development.**
 It has been published to npm to share with the BayNode meetup group. If you

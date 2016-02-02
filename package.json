@@ -16,7 +16,8 @@
     "yeoman-generator",
     "microservice",
     "api",
-    "docker"
+    "docker",
+    "babel"
   ],
   "dependencies": {
     "yeoman-generator": "^0.21.1",
