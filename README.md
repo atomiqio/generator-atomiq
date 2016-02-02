@@ -1,4 +1,4 @@
-# generator-api [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-simple-microservice [![NPM version][npm-image]][npm-url]
 
 > Generate a Node microservice with Docker, Express, Babel, and Node Inspector support
 
@@ -32,7 +32,3 @@ MIT © [Tony Pujals](https://twitter.com/subfuzion)
 
 [npm-image]: https://badge.fury.io/js/generator-simple-microservice.svg
 [npm-url]: https://npmjs.org/package/generator-simple-microservice
-[travis-image]: https://travis-ci.org/atomiqio/generator-simple-microservice.svg?branch=master
-[travis-url]: https://travis-ci.org/atomiqio/generator-simple-microservice
-[daviddm-image]: https://david-dm.org/atomiqio/generator-simple-microservice.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/atomiqio/generator-simple-microservice
