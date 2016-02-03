@@ -1,8 +1,8 @@
 {
   "name": "generator-simple-microservice",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Generate an Express-based Node API to run under Docker",
-  "homepage": "http://atomiq.io",
+  "homepage": "https://github.com/atomiqio/generator-simple-microservice",
   "author": {
     "name": "Tony Pujals",
     "email": "tonypujals@users.noreply.github.com",
