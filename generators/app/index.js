@@ -1,13 +1,12 @@
 'use strict';
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
-var yosay = require('yosay');
 var fs = require('fs');
 var path = require('path');
-var child_process = require('child_process');
+var childProcess = require('child_process');
 var version = require('../../package.json').version;
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = yeoman.Base.extend({
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
 
@@ -15,14 +14,14 @@ module.exports = yeoman.generators.Base.extend({
       desc: 'Project name',
       type: String,
       optional: true,
-      defaults: this.appname // current folder name
+      defaults: 'app' // this.appname // current folder name
     });
   },
 
   initializing: function () {
     var result;
 
-    result = child_process.execSync('which docker-machine');
+    result = childProcess.execSync('which docker-machine');
     if (!result) {
       this.log('Error: %s not found in path (have you installed Docker Toolbox?)',
         chalk.bold('docker-machine'));
@@ -30,7 +29,7 @@ module.exports = yeoman.generators.Base.extend({
     }
 
     try {
-      child_process.execSync('docker-machine active');
+      childProcess.execSync('docker-machine active');
     } catch (e) {
       this.log('You must set the environment for Docker. Try:');
       this.log(chalk.bold('  eval "$(docker-machine env <name>)"'));
@@ -42,16 +41,17 @@ module.exports = yeoman.generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
-    this.log('Node.js API generator, v.%s', version);
+    this.log('Node.js Docker boilerplate, v.%s', version);
 
     this.prompt({
-      type    : 'input',
-      name    : 'name',
-      message : 'Project name',
-      default : this.name
+      type: 'input',
+      name: 'name',
+      message: 'Project name',
+      default: this.name
     }, function (props) {
-      if (this.props) throw new Error('this.props already exists');
+      if (this.props) { throw new Error('this.props already exists'); }
       this.props = props;
+      this.name = props.name;
       done();
     }.bind(this));
   },
@@ -82,6 +82,10 @@ module.exports = yeoman.generators.Base.extend({
       this.destinationPath('.')
     );
 
+    // TODO: need to ensure valid package name and valid image name
+    // package name spec: https://docs.npmjs.com/files/package.json
+    // image name spec: [A-Za-z0-9_.-] are allowed, minimum 2, maximum 30 in length
+    // (https://github.com/docker/docker/pull/7996/files)
     // process templates
     this.fs.copyTpl(
       this.templatePath('package.json'),
@@ -93,8 +97,8 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.npmInstall();
-    //this.spawnCommand('npm', ['run', 'docker-build']);
+    // this.npmInstall();
+    // this.spawnCommand('npm', ['run', 'docker-build']);
   },
 
   end: function () {

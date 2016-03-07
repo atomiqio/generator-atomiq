@@ -2,7 +2,10 @@
   "name": "<%= name %>",
   "version": "0.0.0",
   "config": {
-    "DEBUG": "*"
+    "image": "<%= name %>-image",
+    "name": "<%= name %>-ctr",
+    "start_cmd": "node ./lib/app.js",
+    "debug_cmd": "node-debug --no-preload --web-host 0.0.0.0 ./lib/app.js"
   },
   "scripts": {
     "watch": "babel --watch src -d lib --source-maps",
@@ -10,19 +13,22 @@
     "build": "npm run babel-build && npm run docker-build",
     "babel-build": "npm run clean && babel src -d lib --source-maps",
     "babel-build-inline-sourcemaps": "npm run clean && babel src -d lib --source-maps inline",
-    "docker": "npm run babel-build && npm run docker-run-develop",
-    "docker-build": "docker build -t <%= name %> .",
-    "docker-run": "docker run -e DEBUG=$DEBUG -it --rm -p 8080:8080 --name <%= name %>-1 <%= name %> npm start",
-    "docker-run-detached": "docker run -e DEBUG=$DEBUG -t -d -p 8080:8080 --name <%= name %>-1 <%= name %> npm start",
-    "docker-run-debug": "docker run -e DEBUG=$npm_package_config_DEBUG -it --rm -p 8080:8080 --name <%= name %>-1 <%= name %> npm run debug",
-    "docker-run-develop": "docker run -e DEBUG=$npm_package_config_DEBUG -it --rm -v $PWD:/usr/src/app -p 8080:8080 --name <%= name %>-1 <%= name %> npm run debug",
-    "docker-run-mounted": "docker run -e DEBUG=$npm_package_config_DEBUG -it --rm -v $PWD:/usr/src/app -p 8080:8080 --name <%= name %>-1 <%= name %> npm start",
-    "start": "node ./lib/app.js",
-    "debug": "node-debug --no-preload --web-host 0.0.0.0 ./lib/app.js"
+    "docker-build": "docker build -t $npm_package_config_image .",
+    "docker-run-detached": "docker run -e DEBUG=$DEBUG -t -d -p 8080:8080 --name $npm_package_config_name $npm_package_config_image $npm_package_config_start_cmd",
+    "docker-run-detached-debug": "docker run -e DEBUG=$DEBUG -t -d -p 8080:8080 --name $npm_package_config_name $npm_package_config_image $npm_package_config_debug_cmd",
+    "docker-run": "docker run -e DEBUG=$DEBUG -it --rm -p 8080:8080 --name $npm_package_config_name $npm_package_config_image $npm_package_config_start_cmd",
+    "docker-run-debug": "docker run -e DEBUG=$DEBUG -it --rm -p 8080:8080 --name $npm_package_config_name $npm_package_config_image $npm_package_config_debug_cmd",
+    "docker-run-mounted": "docker run -e DEBUG=$DEBUG -it --rm -v $PWD:/usr/src/app -p 8080:8080 --name $npm_package_config_name $npm_package_config_image $npm_package_config_start_cmd",
+    "docker-run-mounted-debug": "docker run -e DEBUG=$DEBUG -it --rm -v $PWD:/usr/src/app -p 8080:8080 --name $npm_package_config_name $npm_package_config_image $npm_package_config_debug_cmd",
+    "default": "npm run babel-build && npm run docker-run-mounted-debug"
   },
   "dependencies": {
     "babel-polyfill": "^6.3.14",
-    "debug": "^2.2.0"
+    "body-parser": "^1.15.0",
+    "debug": "^2.2.0",
+    "express": "^4.13.4",
+    "logster": "0.0.5",
+    "morgan": "^1.7.0"
   },
   "devDependencies": {
     "babel": "^6.3.26",

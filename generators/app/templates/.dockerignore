@@ -1,8 +1,14 @@
+.babelrc
 .dockerignore
 .editorconfig
 .git/
 .gitignore
 .idea/
+.jshintrc
+.yo-rc.json
+configuration.md
 Dockerfile
 docker-compose.yml
 node_modules/
+npm-debug.log
+src/
