@@ -1,5 +1,6 @@
 # generator-atomiq [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> Generate a Node.js microservice for Docker
+
+> Generate a Node microservice with Docker, Express, Babel, and Node Inspector support
 
 **NOTE: This is currently only proof of concept code under development.**
 It has been published to npm to share with the BayNode meetup group. If you find this helpful, that's awesome.
