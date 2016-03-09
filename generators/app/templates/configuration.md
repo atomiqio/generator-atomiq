@@ -13,8 +13,6 @@ Babel Ecmascript transpiler options
 Lint
 ----
 
-.jshintrc is deprecated.
-
 [.eslintrc](http://eslint.org/)
 
  * http://eslint.org/docs/user-guide/configuring

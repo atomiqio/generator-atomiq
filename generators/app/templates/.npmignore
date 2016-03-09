@@ -1,14 +1,9 @@
+src/
+dist/test/
 .babelrc
 .dockerignore
 .editorconfig
 .esformatter
 .eslintrc.js
-.git/
-.gitignore
-.npmignore
-configuration.md
 Dockerfile
 docker-compose.yml
-node_modules/
-npm-debug.log
-src/

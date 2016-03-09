@@ -1,20 +1,11 @@
-'use strict';
+import { Route } from 'atomiq';
 
-import debug from 'debug';
-import express from 'express';
+// /ping
+export default class Root extends Route {
 
-const log = debug('app:ping');
+  // GET /ping
+  get(req, res) {
+    res.json(req.app.get('service'));
+  }
 
-const Ping = module.exports = function Resource(app) {
-  this.app = app;
-  this.router = express.Router();
-
-  this.router.get('/', (req, res) => {
-    res.json(this.getAppInfo());
-  });
-
-};
-
-Ping.prototype.getAppInfo = function() {
-  return { service: this.app.get('name'), version: this.app.get('version') };
-};
+}

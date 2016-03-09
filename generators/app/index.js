@@ -7,7 +7,7 @@ var childProcess = require('child_process');
 var version = require('../../package.json').version;
 
 module.exports = yeoman.Base.extend({
-  constructor: function () {
+  constructor: function() {
     yeoman.generators.Base.apply(this, arguments);
 
     this.argument('name', {
@@ -18,7 +18,7 @@ module.exports = yeoman.Base.extend({
     });
   },
 
-  initializing: function () {
+  initializing: function() {
     var result;
 
     result = childProcess.execSync('which docker-machine');
@@ -39,7 +39,7 @@ module.exports = yeoman.Base.extend({
     }
   },
 
-  prompting: function () {
+  prompting: function() {
     var done = this.async();
     this.log('Node.js Docker boilerplate, v.%s', version);
 
@@ -48,15 +48,17 @@ module.exports = yeoman.Base.extend({
       name: 'name',
       message: 'Project name',
       default: this.name
-    }, function (props) {
-      if (this.props) { throw new Error('this.props already exists'); }
+    }, function(props) {
+      if (this.props) {
+        throw new Error('this.props already exists');
+      }
       this.props = props;
       this.name = props.name;
       done();
     }.bind(this));
   },
 
-  configuring: function () {
+  configuring: function() {
     this.destDir = path.join(process.cwd(), this.name);
 
     try {
@@ -69,7 +71,7 @@ module.exports = yeoman.Base.extend({
     this.destinationRoot(this.destDir);
   },
 
-  writing: function () {
+  writing: function() {
     // copy dotfiles
     this.fs.copy(
       this.templatePath('./**/.*'),
@@ -90,19 +92,17 @@ module.exports = yeoman.Base.extend({
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'),
-      {
-        name: this.name
-      }
+      {name: this.name}
     );
   },
 
-  install: function () {
+  install: function() {
     // this.npmInstall();
     // this.spawnCommand('npm', ['run', 'docker-build']);
   },
 
-  end: function () {
-    this.log('Done. Enter %s to change to the project directory.',
-      chalk.bold('cd ' + this.name));
+  end: function() {
+    this.log('Done. Enter %s.',
+      chalk.bold('cd ' + this.name + ' && npm install'));
   }
 });
