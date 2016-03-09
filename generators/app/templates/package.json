@@ -1,6 +1,6 @@
 {
   "name": "<%= name %>",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "An atomiq microservice",
   "config": {
     "debug": "app*",
@@ -33,7 +33,7 @@
     "debug": "DEBUG=$npm_package_config_debug $npm_package_config_debug_cmd"
   },
   "dependencies": {
-    "atomiq": "git+https://git@github.com/atomiqio/atomiq.git#v0.0.13",
+    "atomiq": "git+https://git@github.com/atomiqio/atomiq.git",
     "babel-polyfill": "^6.3.14",
     "body-parser": "^1.15.0",
     "debug": "^2.2.0",
