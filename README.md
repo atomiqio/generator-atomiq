@@ -31,10 +31,10 @@ npm install -g yo
 npm install -g generator-atomiq
 ```
 
-Then generate your new project:
+Then generate your new microservice project:
 
 ```bash
-yo atomiq
+yo atomiq [name]
 ```
 
 ## Getting To Know Yeoman
