@@ -2,7 +2,9 @@
   "name": "generator-atomiq",
   "version": "0.0.14",
   "description": "Generate a Node microservice with Docker, Express, Babel, proper signal handling, & Node Inspector debugging support",
-  "homepage": "atomiqio/generator-atomiq",
+  "homepage": "https://github.com/atomiqio/generator-atomiq",
+  "repository": "atomiqio/generator-atomiq",
+  "license": "MIT",
   "author": {
     "name": "Tony Pujals",
     "url": "https://twitter.com/subfuzion"
@@ -46,10 +48,8 @@
       "mocha": true
     }
   },
-  "repository": "atomiqio/generator-atomiq",
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"
-  },
-  "license": "MIT"
+  }
 }
