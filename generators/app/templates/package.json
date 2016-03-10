@@ -1,13 +1,13 @@
 {
   "name": "<%= name %>",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "An atomiq microservice",
   "config": {
     "debug": "app*",
     "image": "<%= name %>",
     "name": "<%= name %>-ctr",
     "start_cmd": "node ./dist/app.js",
-    "debug_cmd": "node-debug --no-preload --web-host 0.0.0.0 ./dist/app.js"
+    "debug_cmd": "node_modules/.bin/node-debug --no-preload --web-host 0.0.0.0 ./dist/app.js"
   },
   "scripts": {
     "test": "mocha dist/test",
