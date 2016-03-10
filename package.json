@@ -1,7 +1,7 @@
 {
   "name": "generator-atomiq",
   "version": "0.0.13",
-  "description": "Generate a Node microservice with Docker, Express, Babel, and Node Inspector support",
+  "description": "Generate a Node microservice with Docker, Express, Babel, proper signal handling, & Node Inspector debugging support",
   "homepage": "atomiqio/generator-atomiq",
   "author": {
     "name": "Tony Pujals",
@@ -17,7 +17,11 @@
     "api",
     "docker",
     "babel",
-    "es6"
+    "es6",
+    "scaffold",
+    "generator",
+    "express",
+    "framework"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
