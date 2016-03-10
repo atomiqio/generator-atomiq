@@ -1,6 +1,6 @@
 {
   "name": "generator-atomiq",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Generate a Node microservice with Docker, Express, Babel, and Node Inspector support",
   "homepage": "atomiqio/generator-atomiq",
   "author": {
