@@ -5,35 +5,20 @@
   "config": {
     "debug": "app*",
     "image": "<%= name %>",
-    "name": "<%= name %>-ctr",
-    "start_cmd": "node ./dist/app.js",
-    "debug_cmd": "node_modules/.bin/node-debug --no-preload --web-host 0.0.0.0 ./dist/app.js"
+    "name": "<%= name %>-ctr"
   },
   "scripts": {
-    "test": "mocha dist/test",
     "watch": "DEBUG=$npm_package_config_debug babel --watch src -d dist --source-maps",
-    "kill-watch": "pkill -f babel",
     "nodemon": "nodemon --legacy-watch --watch dist --watch node_modules/atomiq/dist/lib -e js,json",
     "clean": "rm -rf ./dist",
-    "build": "npm run babel-build && npm run docker-build",
-    "babel-build": "npm run clean && DEBUG=$npm_package_config_debug babel src -d dist --source-maps",
-    "babel-build-inline-sourcemaps": "npm run clean && babel src -d dist --source-maps inline",
-    "docker-build": "docker build -t $npm_package_config_image .",
-    "docker-bash": "docker run -it --rm -p 8080:8080 -p 3000:3000 --name $npm_package_config_name $npm_package_config_image bash",
-    "docker-bash-mounted": "docker run -it --rm -p 8080:8080 -p 3000:3000 -v $PWD/dist:/usr/src/app/dist --name $npm_package_config_name $npm_package_config_image bash",
-    "docker-run-detached": "docker run -e DEBUG=$npm_package_config_debug -t -d -p 8080:8080 -p 3000:3000 --name $npm_package_config_name $npm_package_config_image $npm_package_config_start_cmd",
-    "docker-run-detached-debug": "docker run -e DEBUG=$npm_package_config_debug -t -d -p 8080:8080 -p 3000:3000 --name $npm_package_config_name $npm_package_config_image $npm_package_config_debug_cmd",
-    "docker-run": "docker run -e DEBUG=$npm_package_config_debug -it --rm -p 8080:8080 -p 3000:3000 --name $npm_package_config_name $npm_package_config_image $npm_package_config_start_cmd",
-    "docker-run-debug": "docker run -e DEBUG=$npm_package_config_debug -it --rm -p 8080:8080 -p 3000:3000 --name $npm_package_config_name $npm_package_config_image $npm_package_config_debug_cmd",
-    "docker-run-mounted": "docker run -e DEBUG=$npm_package_config_debug -it --rm -v $PWD/dist:/usr/src/app/dist -p 8080:8080 -p 3000:3000 --name $npm_package_config_name $npm_package_config_image $npm_package_config_start_cmd",
-    "docker-run-mounted-nodemon": "docker run -e DEBUG=$npm_package_config_debug -it --rm -v $PWD/dist:/usr/src/app/dist -p 8080:8080 -p 3000:3000 --name $npm_package_config_name $npm_package_config_image npm run nodemon",
-    "docker-run-mounted-debug": "docker run -e DEBUG=$npm_package_config_debug -it --rm -v $PWD/dist:/usr/src/app/dist -p 8080:8080 -p 3000:3000 --name $npm_package_config_name $npm_package_config_image $npm_package_config_debug_cmd",
-    "default": "npm run babel-build && npm run docker-run-mounted-debug",
-    "start": "DEBUG=$npm_package_config_debug $npm_package_config_start_cmd",
-    "debug": "DEBUG=$npm_package_config_debug $npm_package_config_debug_cmd"
+    "babel": "npm run clean && DEBUG=$npm_package_config_debug babel src -d dist --source-maps",
+    "babel-inline": "npm run clean && babel src -d dist --source-maps inline",
+    "start": "DEBUG=$npm_package_config_debug node ./dist/app.js",
+    "debug": "DEBUG=$npm_package_config_debug node_modules/.bin/node-debug --no-preload --web-host 0.0.0.0 ./dist/app.js",
+    "test": "mocha ./dist/test"
   },
   "dependencies": {
-    "atomiq": "git+https://git@github.com/atomiqio/atomiq.git",
+    "atomiq": "atomiqio/atomiq",
     "babel-polyfill": "^6.3.14",
     "body-parser": "^1.15.0",
     "debug": "^2.2.0",

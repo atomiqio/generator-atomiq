@@ -1,0 +1,11 @@
+version: '2'
+services:
+  app:
+    build: .
+    image: app2
+    ports:
+      - "3000:3000"
+    environment:
+      - DEBUG=app*,-app:directoryrouter
+    command:
+      [ "node", "./dist/app.js" ]

@@ -4,5 +4,5 @@ services:
     extends:
       file: common.yml
       service: app
-    volumes:
-      - ./dist:/usr/src/app/dist
+    environment:
+      - DEBUG=app*,-app:directoryrouter,-app:route
