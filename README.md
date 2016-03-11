@@ -3,16 +3,26 @@
 > Generate a Node microservice with Docker, Express, Babel, Node Inspector support, and
   optional directory-based routing conventions.
 
-`atomiq` provides very lightweight structure and support useful for Express-based microservices. It is
-not a framework and doesn't get in the way of Express, but it does offer a nice convention
-for directory-based routing that you can use if you choose to.
+This is a generator for [atomiq](https://github.com/atomiqio/atomiq).
 
-This generator will scaffold an app that correctly handles signals for graceful server shutdown,
-including inside of a Docker container. It provides a useful set of docker-compose files for
-running containers for production and development (mounts the local `dist` directory during development).
+`atomiq` provides very lightweight structure and support useful for
+Express-based microservices. It is not a framework and doesn't get in
+the way of Express, but it does offer a nice convention for
+directory-based routing that you can use if you choose to.
 
-It generates ES6 source files and provides npm run script support for `npm run babel`, `npm run watch`,
-and `npm run nodemon`.
+This generator will scaffold an app that correctly handles signals
+for graceful server shutdown, including inside of a Docker container.
+It provides a useful set of docker-compose files for running containers
+for production and development (mounts the local `dist` directory
+during development).
+
+It generates a few sample routes using ES6 classes and provides
+npm run script support for:
+
+ * `npm run babel` (includes support for ES6 and async/await)
+ * `npm run watch`
+ * `npm run nodemon`
+
 
 Features:
 
