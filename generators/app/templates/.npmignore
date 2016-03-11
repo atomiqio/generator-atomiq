@@ -1,9 +1,6 @@
 src/
 dist/test/
-.babelrc
-.dockerignore
-.editorconfig
-.esformatter
-.eslintrc.js
 Dockerfile
 docker-compose.yml
+common.yml
+debug.yml
