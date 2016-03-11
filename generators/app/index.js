@@ -90,9 +90,11 @@ module.exports = yeoman.Base.extend({
     // (https://github.com/docker/docker/pull/7996/files)
     // process templates
     this.fs.copyTpl(
-      this.templatePath('package.json'),
+      this.templatePath('_package.json'),
       this.destinationPath('package.json'),
-      {name: this.name}
+      {
+        name: this.name
+      }
     );
   },
 
