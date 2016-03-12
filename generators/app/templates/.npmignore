@@ -1,6 +1,2 @@
 src/
 dist/test/
-Dockerfile
-docker-compose.yml
-common.yml
-debug.yml
