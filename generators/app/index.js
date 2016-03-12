@@ -81,7 +81,7 @@ module.exports = yeoman.Base.extend({
     // copy non-dotfiles
     this.fs.copy(
       //this.templatePath('./**/*'),
-      this.templatePath('./!(node_modules|_npmignore|_package.json)'),
+      this.templatePath('./**/!(node_modules|_npmignore|_package.json)'),
       this.destinationPath('.')
     );
 
