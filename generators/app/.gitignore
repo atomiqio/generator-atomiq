@@ -1,4 +1,4 @@
-# the actual template used by the generator is _package.json.
-# package.json is only used while interactively working on the generator
-# but don't forget to sync _package.json once finished before publishing!
+templates/.npmignore
 templates/package.json
+templates/node_modules
+

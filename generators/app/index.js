@@ -74,19 +74,20 @@ module.exports = yeoman.Base.extend({
   writing: function() {
     // copy dotfiles
     this.fs.copy(
-      this.templatePath('./**/.*'), this.destinationPath('.')
+      this.templatePath('./**/.*'),
+      this.destinationPath('.')
     );
 
     // copy non-dotfiles
     this.fs.copy(
-      this.templatePath('./**/*'), this.destinationPath('.')
+      //this.templatePath('./**/*'),
+      this.templatePath('./!(node_modules|_npmignore|_package.json)'),
+      this.destinationPath('.')
     );
 
-    /*
-        this.fs.move(
-          this.templatePath('./._npmignore'), this.destinationPath('./.npmignore')
-        );
-    */
+    this.fs.copy(
+      this.templatePath('./_npmignore'), this.destinationPath('.npmignore')
+    );
 
     // TODO: need to ensure valid package name and valid image name
     // package name spec: https://docs.npmjs.com/files/package.json
