@@ -2,7 +2,7 @@ version: '2'
 services:
   app:
     build: .
-    image: app2
+    image: <%= name =>
     ports:
       - "3000:3000"
     environment:

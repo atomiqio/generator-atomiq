@@ -80,17 +80,17 @@ module.exports = yeoman.Base.extend({
 
     // copy non-dotfiles
     this.fs.copy(
-      //this.templatePath('./**/*'),
-      this.templatePath('./**/!(node_modules|_npmignore|_package.json)'),
+      this.templatePath('./**/*'),
       this.destinationPath('.')
     );
 
     this.fs.copy(
-      this.templatePath('./_npmignore'), this.destinationPath('.npmignore')
+      this.templatePath('./_npmignore'),
+      this.destinationPath('.npmignore')
     );
 
     // TODO: need to ensure valid package name and valid image name
-    // package name spec: https://docs.npmjs.com/files/package.json
+    // package name spec: https://docs.npmjs.com/files/package.json#name
     // image name spec: [A-Za-z0-9_.-] are allowed, minimum 2, maximum 30 in length
     // (https://github.com/docker/docker/pull/7996/files)
     // process templates
@@ -99,6 +99,16 @@ module.exports = yeoman.Base.extend({
         name: this.name
       }
     );
+
+    this.fs.copyTpl(
+      this.templatePath('_common.yml'), this.destinationPath('common.yml'), {
+        name: this.name
+      }
+    );
+
+    ['./_npmignore', './_package.json', '._common.yml'].forEach(f => {
+      this.fs.delete(this.destinationPath('_npm'));
+    });
   },
 
   install: function() {
