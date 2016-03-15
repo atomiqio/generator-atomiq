@@ -1,4 +1,5 @@
-require('babel-polyfill');
+import 'babel-polyfill';
+import 'source-map-support/register';
 
 import { DirectoryRouteLoader } from 'atomiq';
 import bodyParser from 'body-parser';
@@ -18,17 +19,12 @@ export default app;
 // provide express module to atomiq
 app.set('express', express);
 
-app.set('service', {
-  name: pkg.name,
-  version: pkg.version
-});
+app.set('service', { name: pkg.name, version: pkg.version });
 
 // install middleware
 app.use(morgan(process.env.NODE_ENV || 'dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // load routes
 let loader = new DirectoryRouteLoader(app);
