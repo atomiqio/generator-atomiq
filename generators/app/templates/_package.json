@@ -18,7 +18,7 @@
     "test": "mocha ./dist/test"
   },
   "dependencies": {
-    "atomiq": "^0.0.13",
+    "atomiq": "^0.0.17",
     "babel-polyfill": "^6.3.14",
     "body-parser": "^1.15.0",
     "debug": "^2.2.0",
