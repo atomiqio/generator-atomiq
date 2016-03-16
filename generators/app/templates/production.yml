@@ -1,8 +1,9 @@
 version: '2'
 services:
-  app:
+  web:
     extends:
       file: common.yml
-      service: app
+      service: web
     environment:
-      - DEBUG=app*,-app:directoryrouter,-app:route
+      DEBUG: app*,-app:directoryrouter*,-app:route*
+      NODE_ENV: production

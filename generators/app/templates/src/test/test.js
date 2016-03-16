@@ -14,8 +14,10 @@ import assert from 'assert';
 
 // async mocha helper inspired by Jason Jarrett:
 // http://staxmanade.com/2015/11/testing-asyncronous-code-with-mochajs-and-es7-async-await/
-let mocha = asyncFunc => {
-  return async function (done, timeout = 2 * 1000) {
+let mocha = (asyncFunc, timeout = 2 * 1000) => {
+  // Returns a function that takes a `done` parameter as mocha expects.
+  // It doesn't use arrow syntax so the `this` context will be set correctly
+  return async function(done) {
     this.timeout = timeout; // eslint-disable-line
     try {
       await asyncFunc();
@@ -28,6 +30,7 @@ let mocha = asyncFunc => {
 
 describe('tests', function() {
 
+  // This is an auto-generated sample test to demo testing async functions
   it('should fetch GitHub user details for "subfuzion"', mocha(async () => {
     let login = 'subfuzion';
     let user = await GitHubUser.fetchDetails(login);

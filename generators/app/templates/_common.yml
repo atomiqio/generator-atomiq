@@ -1,11 +1,12 @@
 version: '2'
 services:
-  app:
+  web:
     build: .
     image: <%= name %>
     ports:
-      - "3000:3000"
+      - "3000"
     environment:
-      - DEBUG=app*,-app:directoryrouter
+      DEBUG: app*,-app:directoryrouter*,-app:route*
+      NODE_ENV: development
     command:
       [ "node", "./dist/app.js" ]

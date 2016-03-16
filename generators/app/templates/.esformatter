@@ -3,23 +3,6 @@
     "allowShebang": true
   },
 
-  "plugins": [
-    "esformatter-collapse-objects"
-  ],
-
-  "collapseObjects": {
-    "ObjectExpression": {
-      "maxLineLength": 80,
-      "maxKeys": 3,
-      "maxDepth": 2
-    },
-    "ArrayExpression": {
-      "maxLineLength": 80,
-      "maxKeys": 3,
-      "maxDepth": 2
-    }
-  },
-
   "indent" : {
     "value": "  ",
     "alignComments": true,
@@ -76,7 +59,6 @@
       "AssignmentExpression" : ">=1",
       "AssignmentOperator": 0,
       "AssignmentPattern" : 0,
-      "ArrayExpressionClosing": 1,
       "ArrayPatternOpening": 0,
       "ArrayPatternClosing": 0,
       "ArrayPatternComma": 0,
@@ -170,8 +152,6 @@
     },
 
     "after" : {
-      "ArrayExpressionOpening": 1,
-      "ArrayExpressionComma": 1,
       "ArrayPatternOpening": 0,
       "ArrayPatternClosing": 0,
       "ArrayPatternComma": 0,
