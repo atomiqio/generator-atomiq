@@ -1,48 +1,50 @@
-atomiq-template
-===============
+# <%= name %>
 
-This is the development version of the atomiq microservice template.
+This microservice has been generated with a few basic routes and a test.
 
-Development
------------
+## Features:
 
-`atomiq-template` has a dependency on `atomiqio/atomiq`. Obviously, if you want to make changes
-to `atomiq`, you need to clone it also and do the whole `cd <path>/atomiq && npm ln && cd <path>/atomiq-template && npm ln atomiq` thing.
+  * Docker support for production and development, including debugging support with [Node Inspector](https://github.com/node-inspector/node-inspector)
+  * Signal handling for graceful server shutdown (including inside of Docker containers)
+  * [Babel](https://babeljs.io) support
+  * [ESLint](http://eslint.org/) / [esformatter](https://github.com/millermedeiros/esformatter) support
+
+
+## make.js script
+
+This project has a `make.js` script that supports building, running, and testing locally and in a Docker container.
+
+ * `node make clean` - remove the `dist` directory
+ * `node make babel` - transpile `src` to `dist` with sourcemaps (ES6 and async/await support)
+ * `node make build` - transpile, then build a Docker image
+ * `node make run` - start in container or start locally (--local)
+ * `node make test` - run mocha tests in container or locally (--local)
+ * `node make debug` - run with debugging support in container or locally (--local)
+ * `node make watch` - when anything in src changes, re-transpile to dist
+ * `node make monitor` - when anything in dist changes, restart server in container or locally (--local)
+ * `node make host` - get Docker machine IP:PORT for the app running in a container
+
+## Trying it out
 
 terminal #1
 
-    $ git clone git git@github.com:atomiqio/atomiq-template.git
-    $ cd atomiq-template
-    $ npm run watch
+    $ node make build
+    $ node make monitor
 
-terminal #2 (run on host)
+terminal #2
 
-    $ cd atomiq-template
-    $ npm run nodemon
+    $ node make watch
 
-terminal #3 (run in container)
+terminal #3
 
-    $ cd atomiq-template
-    $ npm run docker-build
-    $ npm run docker-run-mounted-nodemon
+    host=$(node make host)
 
-terminal #4 (testing)
+    $ curl $host/item/ping
 
-    # local test (examples)
-
-    $ curl http://localhost:3000/item/1/about
-    $ curl -X POST -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}' http://localhost:3000/item/1
+    $ curl -X POST -H "Content-Type: application/json" -d '{"key1":"value1", "key2":"value2"}' $host/item/1
 
     $ # easier POST with curl default (application/x-www-form-urlencoded):
-    $ curl -X POST -d "param1=value1&param2=value2" http://localhost:3000/item/1
+    $ curl -X POST -d "param1=value1&param2=value2" $url/item/1
 
     $ # or post with data file
-    $ curl -d "@data.json" -X POST http://localhost:3000/item/1
-
-
-    # docker test
-
-    $ HOST=$(docker-machine ip <name>)
-    $ curl http://$HOST:3000/item/1/about
-
-    # etc.
+    $ curl -d "@data.json" -X POST $url/item/1

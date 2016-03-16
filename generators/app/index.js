@@ -106,18 +106,20 @@ module.exports = yeoman.Base.extend({
       }
     );
 
-    ['./_npmignore', './_package.json', '._common.yml'].forEach(f => {
-      this.fs.delete(this.destinationPath('_npm'));
+    ['_npmignore', '_package.json', '_common.yml'].forEach(f => {
+      this.fs.delete(this.destinationPath(f));
     });
   },
 
-  install: function() {
-    // this.npmInstall();
-    // this.spawnCommand('npm', ['run', 'docker-build']);
-  },
+  install: function() {},
 
   end: function() {
-    this.log('Done. Enter %s.',
-      chalk.bold('cd ' + this.name + ' && npm install'));
+    this.log('OK. Try running the app in a container. Enter:\n%s\n%s\n%s',
+      chalk.bold('   cd ' + this.name),
+      chalk.bold('   npm install'),
+      chalk.bold('   node make'));
+    this.log('Then, from the same directory in another terminal, enter:');
+    this.log(chalk.bold('   node make host'));
+    this.log('to get the actual Docker machine IP:PORT for the container');
   }
 });

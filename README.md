@@ -1,7 +1,7 @@
 # generator-atomiq [![NPM version][npm-image]][npm-url]
 
-> Generate a Node microservice with Docker, Express, Babel, Node Inspector support, and
-  optional directory-based routing conventions.
+> Generate a Node microservice with Docker, Express, Babel, Node
+  Inspector support, and optional directory-based routing conventions.
 
 This is a generator for [atomiq](https://github.com/atomiqio/atomiq).
 
@@ -16,13 +16,19 @@ It provides a useful set of docker-compose files for running containers
 for production and development (mounts the local `dist` directory
 during development).
 
-It generates a few sample routes using ES6 classes and provides
-npm run script support for:
+It generates a few sample routes using ES6 classes and provides a simple
+Node.js make script that supports building, running, and testing
+locally and in a Docker container.
 
- * `npm run babel` (includes support for ES6 and async/await)
- * `npm run watch`
- * `npm run nodemon`
-
+ * `node make clean` - remove the `dist` directory
+ * `node make babel` - transpile `src` to `dist` with sourcemaps (ES6 and async/await support)
+ * `node make build` - transpile, then build a Docker image
+ * `node make run` - start in container or start locally (--local)
+ * `node make test` - run mocha tests in container or locally (--local)
+ * `node make debug` - run with debugging support in container or locally (--local)
+ * `node make watch` - when anything in src changes, re-transpile to dist
+ * `node make monitor` - when anything in dist changes, restart server in container or locally (--local)
+ * `node make host` - get Docker machine IP:PORT for the app running in a container
 
 Features:
 
@@ -47,9 +53,11 @@ Then generate your new microservice project:
 yo atomiq [name]
 ```
 
-## Getting To Know Yeoman
+See new project `README.md` for further instructions.
 
-Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he&#39;s very easy to work with. If you think he&#39;s too opinionated, he can be easily convinced. Feel free to [learn more about him](http://yeoman.io/).
+## Yeoman
+
+This generator was build with [Yeoman](http://yeoman.io/).
 
 ## License
 
