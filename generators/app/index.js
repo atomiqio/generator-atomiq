@@ -72,43 +72,58 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function() {
-    // copy dotfiles
+    // // copy dotfiles
+    // this.fs.copy(
+    //   this.templatePath('./**/.*'),
+    //   this.destinationPath('.')
+    // );
+    //
+    // // copy non-dotfiles
+    // this.fs.copy(
+    //   this.templatePath('./**/*'),
+    //   this.destinationPath('.')
+    // );
+
     this.fs.copy(
-      this.templatePath('./**/.*'),
+      this.templatePath('./**'),
       this.destinationPath('.')
     );
 
-    // copy non-dotfiles
-    this.fs.copy(
-      this.templatePath('./**/*'),
-      this.destinationPath('.')
-    );
+    var props = {name: this.name};
 
-    this.fs.copy(
-      this.templatePath('./_npmignore'),
-      this.destinationPath('.npmignore')
-    );
-
-    // TODO: need to ensure valid package name and valid image name
+    // TODO: package.json rules: need to ensure valid package name and valid image name
     // package name spec: https://docs.npmjs.com/files/package.json#name
     // image name spec: [A-Za-z0-9_.-] are allowed, minimum 2, maximum 30 in length
     // (https://github.com/docker/docker/pull/7996/files)
     // process templates
-    this.fs.copyTpl(
-      this.templatePath('_package.json'), this.destinationPath('package.json'), {
-        name: this.name
+    var templated = [
+      {
+        src: '_common.yml',
+        dest: 'common.yml'
+      },
+      {
+        // not really a template, but can't have an exposed .npmignore file when
+        // publishing generator; this ensure _npmignore will be removed from dest
+        src: '_npmignore',
+        dest: '.npmigore'
+      },
+      {
+        src: '_package.json',
+        dest: 'package.json'
+      },
+      {
+        src: '_README.md',
+        dest: 'README.md'
       }
-    );
+    ];
 
-    this.fs.copyTpl(
-      this.templatePath('_common.yml'), this.destinationPath('common.yml'), {
-        name: this.name
-      }
-    );
-
-    ['_npmignore', '_package.json', '_common.yml'].forEach(f => {
-      this.fs.delete(this.destinationPath(f));
+    templated.forEach(f => {
+      this.fs.copyTpl(
+        this.templatePath(f.src), this.destinationPath(f.dest), props
+      );
+      this.fs.delete(this.destinationPath(f.src));
     });
+
   },
 
   install: function() {},

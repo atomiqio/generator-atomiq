@@ -2,7 +2,6 @@
 require('shelljs/make');
 
 var exec = require('child_process').execSync;
-var minimist = require('minimist');
 var optimist = require('optimist');
 var path = require('path');
 var spawn = require('child_process').spawnSync;
@@ -35,6 +34,9 @@ target.clean = function() {
 // build dist
 target.build = function() {
   target.babel();
+  if (!options.local) {
+    spawn('docker-compose', ['build'], spawnopts);
+  }
 };
 
 // transpile src -> dist with sourcemap files

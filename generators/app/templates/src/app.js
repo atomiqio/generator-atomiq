@@ -22,7 +22,7 @@ app.set('express', express);
 app.set('service', { name: pkg.name, version: pkg.version });
 
 // install middleware
-app.use(morgan(process.env.NODE_ENV || 'dev'));
+app.use(morgan(process.env.NODE_ENV == 'production' ? 'combined' : 'dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
