@@ -34,13 +34,13 @@ Features:
 
   * Docker support for production and development, including debugging support with [Node Inspector]
   * Signal handling for graceful server shutdown (including inside of Docker containers)
-  * [Babel](https://babeljs.io) support
-  * [ESLint](http://eslint.org/) / [esformatter](https://github.com/millermedeiros/esformatter) support
+  * [Babel] support
+  * [ESLint] / [esformatter] support
 
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-atomiq using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman] and generator-atomiq using [npm] (we assume you have pre-installed [node.js]).
 
 ```bash
 npm install -g yo
@@ -64,7 +64,12 @@ This generator was build with [Yeoman].
 MIT © atomiq.io
 
 [atomiq]: https://github.com/atomiqio/atomiq
+[Babel]: https://babeljs.io
+[ESLint]: http://eslint.org/
+[esformatter]: https://github.com/millermedeiros/esformatter
 [Node Inspector]: https://github.com/node-inspector/node-inspector
+[node.js]: https://nodejs.org/
+[npm]: https://www.npmjs.com/
 [npm-image]: https://badge.fury.io/js/generator-atomiq.svg
 [npm-url]: https://npmjs.org/package/generator-atomiq
 [Yeoman]: http://yeoman.io
