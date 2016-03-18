@@ -57,7 +57,7 @@ See new project `README.md` for further instructions.
 
 ## Yeoman
 
-This generator was build with [Yeoman](http://yeoman.io/).
+This generator was build with [Yeoman].
 
 ## License
 
@@ -66,7 +66,4 @@ MIT © atomiq.io
 
 [npm-image]: https://badge.fury.io/js/generator-atomiq.svg
 [npm-url]: https://npmjs.org/package/generator-atomiq
-[travis-image]: https://travis-ci.org/atomiqio/generator-atomiq.svg?branch=master
-[travis-url]: https://travis-ci.org/atomiqio/generator-atomiq
-[daviddm-image]: https://david-dm.org/atomiqio/generator-atomiq.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/atomiqio/generator-atomiq
+[Yeoman]: http://yeoman.io
