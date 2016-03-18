@@ -40,7 +40,7 @@ Features:
 
 ## Installation
 
-First, install [Yeoman] and generator-atomiq using [npm] (we assume you have pre-installed [node.js]).
+First, install [Yeoman] and generator-atomiq using [npm]. Requires Node.js v4 or v5.
 
 ```bash
 npm install -g yo
@@ -68,7 +68,6 @@ MIT © atomiq.io
 [ESLint]: http://eslint.org/
 [esformatter]: https://github.com/millermedeiros/esformatter
 [Node Inspector]: https://github.com/node-inspector/node-inspector
-[node.js]: https://nodejs.org/
 [npm]: https://www.npmjs.com/
 [npm-image]: https://badge.fury.io/js/generator-atomiq.svg
 [npm-url]: https://npmjs.org/package/generator-atomiq
