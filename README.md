@@ -3,7 +3,7 @@
 > Generate a Node microservice with Docker, Express, Babel, Node
   Inspector support, and optional directory-based routing conventions.
 
-This is a generator for [atomiq](https://github.com/atomiqio/atomiq).
+This is a generator for [atomiq].
 
 `atomiq` provides very lightweight structure and support useful for
 Express-based microservices. It is not a framework and doesn't get in
@@ -32,7 +32,7 @@ locally and in a Docker container.
 
 Features:
 
-  * Docker support for production and development, including debugging support with [Node Inspector](https://github.com/node-inspector/node-inspector)
+  * Docker support for production and development, including debugging support with [Node Inspector]
   * Signal handling for graceful server shutdown (including inside of Docker containers)
   * [Babel](https://babeljs.io) support
   * [ESLint](http://eslint.org/) / [esformatter](https://github.com/millermedeiros/esformatter) support
@@ -63,7 +63,8 @@ This generator was build with [Yeoman].
 
 MIT © atomiq.io
 
-
+[atomiq]: https://github.com/atomiqio/atomiq
+[Node Inspector]: https://github.com/node-inspector/node-inspector
 [npm-image]: https://badge.fury.io/js/generator-atomiq.svg
 [npm-url]: https://npmjs.org/package/generator-atomiq
 [Yeoman]: http://yeoman.io
