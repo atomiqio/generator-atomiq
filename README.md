@@ -1,4 +1,4 @@
-# generator-atomiq [![NPM version][npm-image]][npm-url]
+# generator-atomiq [![npm badge][npm-image]][npm-url]
 
 > Generate a Node microservice with Docker, Express, Babel, Node
   Inspector support, and optional directory-based routing conventions.
