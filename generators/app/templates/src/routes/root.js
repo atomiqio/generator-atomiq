@@ -1,13 +1,11 @@
 import { Route } from 'atomiq';
 
 // (root url) /
-export default class Ping extends Route {
+export default class Root extends Route {
 
   // GET /
   get(req, res) {
-    res.json({
-      root: []
-    });
+    res.json({ root: [] });
   }
 
 }

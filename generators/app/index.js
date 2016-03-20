@@ -72,20 +72,15 @@ module.exports = yeoman.Base.extend({
   },
 
   writing: function() {
-    // // copy dotfiles
-    // this.fs.copy(
-    //   this.templatePath('./**/.*'),
-    //   this.destinationPath('.')
-    // );
-    //
-    // // copy non-dotfiles
-    // this.fs.copy(
-    //   this.templatePath('./**/*'),
-    //   this.destinationPath('.')
-    // );
-
+    // copy dotfiles
     this.fs.copy(
-      this.templatePath('./**'),
+      this.templatePath('./**/.*'),
+      this.destinationPath('.')
+    );
+
+    // copy non-dotfiles
+    this.fs.copy(
+      this.templatePath('./**/*'),
       this.destinationPath('.')
     );
 
