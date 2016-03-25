@@ -21,6 +21,7 @@ Node.js make script that supports building, running, and testing
 locally and in a Docker container.
 
  * `node make clean` - remove the `dist` directory
+ * `node make dist` - copies everything to `dist` directory except .js files
  * `node make babel` - transpile `src` to `dist` with sourcemaps (ES6 and async/await support)
  * `node make build` - transpile, then build a Docker image
  * `node make run` - start in container or start locally (--local)
@@ -28,7 +29,7 @@ locally and in a Docker container.
  * `node make debug` - run with debugging support in container or locally (--local)
  * `node make watch` - when anything in src changes, re-transpile to dist
  * `node make monitor` - when anything in dist changes, restart server in container or locally (--local)
- * `node make host` - get Docker machine IP:PORT for the app running in a container
+ * `node make host` - get Docker machine IP:PORT for the app running in a container (app must be running)
 
 Features:
 
