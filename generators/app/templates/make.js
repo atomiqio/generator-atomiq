@@ -1,16 +1,26 @@
 #!/usr/bin/env node
+
+/*eslint-disable no-undef, no-console, no-empty, lines-around-comment*/
+"use strict";
+const exec = require('child_process').execSync;
+const fs = require('fs');
+const optimist = require('optimist');
+const path = require('path');
+const spawn = require('child_process').spawnSync;
+
+const options = optimist.argv;
+// remove options before loading make or else make will
+// think they're additional targets and complain
+process.argv = process.argv.filter(elem => !elem.startsWith('--'));
 require('shelljs/make');
 
-var exec = require('child_process').execSync;
-var optimist = require('optimist');
-var path = require('path');
-var spawn = require('child_process').spawnSync;
+const spawnopts = {
+  env: process.env,
+  stdio: 'inherit'
+};
 
-var options = optimist.argv;
-var spawnopts = { env: process.env, stdio: 'inherit' };
-
-var app = path.join('dist', 'app.js');
-var testDir = path.join('dist', 'test');
+const app = path.join('dist', 'app.js');
+const testDir = path.join('dist', 'test');
 
 // should be run from project root
 cd(__dirname);
@@ -31,6 +41,32 @@ target.clean = function() {
   rm('-rf', './dist');
 };
 
+target.dist = function() {
+  target.clean();
+  // don't copy js source since babel will do that
+  //let source = ['src/**', '!src/**/*.js'];
+  copyDir('src', 'dist', {
+    recurse: true
+  }, f => path.extname(f) != '.js');
+};
+
+function copyDir(source, dest, options, filter) {
+  mkdir('-p', dest);
+  let files = fs.readdirSync(source).filter(filter);
+  files.forEach(f => {
+    let srcpath = path.join(source, f);
+    let stats = fs.statSync(srcpath);
+    if (stats.isFile()) {
+      let destpath = path.join(dest, f);
+      cp(srcpath, destpath);
+      console.log(`${srcpath} -> ${destpath}`);
+    } else if (stats.isDirectory() && options.recurse) {
+      copyDir(path.join(source, f), path.join(dest, f), options, filter);
+    }
+
+  });
+}
+
 // build dist
 target.build = function() {
   target.babel();
@@ -39,21 +75,29 @@ target.build = function() {
   }
 };
 
+// build dist and force docker-compose not to use the cache
+target.rebuild = function() {
+  target.babel();
+  if (!options.local) {
+    spawn('docker-compose', ['build', '--force-rm', '--no-cache'], spawnopts);
+  }
+};
+
 // transpile src -> dist with sourcemap files
 target.babel = function() {
-  target.clean();
+  target.dist();
   spawn('babel', ['src', '-d', 'dist', '--source-maps'], spawnopts);
 };
 
 // transpile src -> dist with inline sourcemaps
 target.babelinline = function() {
-  target.clean();
+  target.dist();
   spawn('babel', ['src', '-d', 'dist', '--source-maps', 'inline'], spawnopts);
 };
 
 // if anything in src changes, re-transpile to dist
 target.watch = function() {
-  target.clean();
+  target.dist();
   spawn('babel', ['--watch', 'src', '-d', 'dist', '--source-maps'], spawnopts);
 };
 
@@ -85,6 +129,7 @@ target.test = function() {
 
 // run app
 target.run = function() {
+  target.babel();
   if (options.local) {
     debugReminder();
     spawn('node', [app], spawnopts);
@@ -95,6 +140,7 @@ target.run = function() {
 
 // debug app using node inspector
 target.debug = function() {
+  target.babel();
   if (options.local) {
     debugReminder();
     spawn('node-debug', ['--no-preload', '--web-host', '0.0.0.0', app], spawnopts);
@@ -106,9 +152,9 @@ target.debug = function() {
 // if container is running, get host (ip:port)
 target.host = function() {
   try {
-    var active = exec('docker-machine active').toString('utf8');
-    var host = exec('docker-machine ip ' + active).toString('utf8').trim();
-    var port = exec('docker-compose port web 3000').toString('utf8').split(':')[1].trim();
+    let active = exec('docker-machine active').toString('utf8');
+    let host = exec('docker-machine ip ' + active).toString('utf8').trim();
+    let port = exec('docker-compose port web 443').toString('utf8').split(':')[1].trim();
     console.log('%s:%s', host, port);
   } catch (err) {
     console.log('Error: make sure that a container is running first');
@@ -117,6 +163,6 @@ target.host = function() {
 
 function debugReminder() {
   if (!process.env.DEBUG) {
-    console.log('Make sure to set DEBUG environment variable to see debug output (ex: DEBUG=app*)');
+    console.log('Make sure to set DEBUG environment letiable to see debug output (ex: DEBUG=app*)');
   }
 }
