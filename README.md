@@ -1,7 +1,10 @@
-# generator-atomiq [![npm badge][npm-image]][npm-url]
+# generator-atomiq
 
 > Generate a Node microservice with Docker, Express, Babel, Node
   Inspector support, and optional directory-based routing conventions.
+
+[![npm badge][npm-image]][npm-url]
+[![npm downloads][downloads-image]][downloads-url]
 
 This is a generator for [atomiq].
 
@@ -70,6 +73,8 @@ MIT © atomiq.io
 [esformatter]: https://github.com/millermedeiros/esformatter
 [Node Inspector]: https://github.com/node-inspector/node-inspector
 [npm]: https://www.npmjs.com/
-[npm-image]: https://badge.fury.io/js/generator-atomiq.svg
+[npm-image]: https://img.shields.io/npm/v/generator-atomiq.svg
 [npm-url]: https://npmjs.org/package/generator-atomiq
+[downloads-image]: https://img.shields.io/npm/dm/generator-atomiq.svg
+[downloads-url]: https://npmjs.org/package/generator-atomiq
 [Yeoman]: http://yeoman.io
